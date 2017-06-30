@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:4.0
+N:Doiel;Robert;
+FN:Robert Doiel
+ORG:Caltech;Library Services
+TITLE:Senior Applications Developer
+TEL;WORK;VOICE:626-395-6428
+EMAIL;PREF;INTERNET:rsdoiel@caltech.edu
+URL:http://rsdoiel.github.io
+SOURCE;VALUE=uri:http://directory.caltech.edu/personnel/rsdoiel.vcf
+REV:2017-06-30T09:03:32.355951
+END:VCARD

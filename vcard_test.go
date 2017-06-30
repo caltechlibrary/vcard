@@ -20,5 +20,60 @@
 package vcard
 
 import (
+	"io/ioutil"
+	"strings"
 	"testing"
 )
+
+func TestParse(t *testing.T) {
+	testFiles := []string{
+		"testdata/rsdoiel.vcf",
+		"testdata/john.doe.vcf",
+		"testdata/forrest.gump-v2.vcf",
+		"testdata/forrest.gump-v3.vcf",
+		"testdata/forrest.gump-v4.vcf",
+	}
+
+	fn := []string{
+		"Robert Doiel",
+		"John Doe",
+		"Forrest Gump",
+		"Forrest Gump",
+		"Forrest Gump",
+		"Forrest Gump",
+	}
+
+	orgs := [][]string{
+		[]string{"Caltech", "Library Services"},
+		[]string{"Example Science Institute", ""},
+		[]string{"Bubba Gump Shrimp Co."},
+		[]string{"Bubba Gump Shrimp Co."},
+		[]string{"Bubba Gump Shrimp Co."},
+		[]string{"Bubba Gump Shrimp Co."},
+	}
+
+	for i, fname := range testFiles {
+		src, err := ioutil.ReadFile(fname)
+		if err != nil {
+			t.Errorf("can't read test data %s, %s", fname, err)
+			t.FailNow()
+		}
+		vcf := NewVCard()
+		if err := vcf.Parse(src); err != nil {
+			t.Errorf("parse failed for %s, %s", fname, err)
+		}
+		if strings.Compare(fn[i], vcf.FullName) != 0 {
+			t.Errorf("expected %q, got %q", fn[i], vcf.FullName)
+		}
+
+		if len(orgs[i]) != len(vcf.Organization) {
+			t.Errorf("expected length %d, got %d", len(orgs[i]), len(vcf.Organization))
+		} else {
+			for j, val := range orgs[i] {
+				if strings.Compare(val, vcf.Organization[j]) != 0 {
+					t.Errorf("expected %q, got %q", val, vcf.Organization[j])
+				}
+			}
+		}
+	}
+}

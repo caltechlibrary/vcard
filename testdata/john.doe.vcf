@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:4.0
+N:Doe;John;
+FN:John Doe
+ORG:Example Science Institute;
+TITLE:Professor
+EMAIL;PREF;INTERNET:john.doe@example.edu
+SOURCE;VALUE=uri:http://directory.example.edu/personnel/john.doe.vcf
+REV:2017-06-29T15:01:36.657947
+END:VCARD
