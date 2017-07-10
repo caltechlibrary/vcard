@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:4.0
+N:Page; Larry
+FN:Larry Page
+ORG:Alphabet Inc
+TITLE:CEO of Alphabet Inc
+PHOTO:MEDIATYPE=image/jpeg:https://en.wikipedia.org/wiki/Larry_Page#/media/File:Larry_Page_in_the_European_Parliament,_17.06.2009_(cropped).jpg
+ADR:1600 Amphitheatre Parkway, Mountain View, California 94043
+EMAIL:larrypage@abc.xyz
+END:VCARD

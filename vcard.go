@@ -27,6 +27,12 @@ import (
 	//"time"
 )
 
+const (
+	CRLF = "\r\n"
+	LF   = "\n"
+	CR   = "\r"
+)
+
 // VCard is a struct based on VCard V4.0 example
 type VCard struct {
 	Version      string   `json:"version"`
@@ -55,7 +61,7 @@ func (vcard *VCard) Parse(src []byte) error {
 		inVCard      bool
 	)
 	// Break out text into lines
-	lines := bytes.Split(src, []byte("\n"))
+	lines := bytes.Split(src, []byte(LF))
 	for i, line := range lines {
 		if bytes.Compare(line, []byte("BEGIN:VCARD")) == 0 {
 			if inVCard == true {

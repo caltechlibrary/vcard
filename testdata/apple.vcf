@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+N:Apple Inc.
+FN:Apple Inc.
+ORG:Apple Inc.
+TEL;TYPE=MAIN;VALUE=uri:tel:+1-408-996–1010
+ADR;TYPE=MAIN,PREF:Apple 1 Infinite Loop Cupertino, CA 95014
+END:VCARD

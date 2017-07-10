@@ -32,6 +32,9 @@ func TestParse(t *testing.T) {
 		"testdata/forrest.gump-v2.vcf",
 		"testdata/forrest.gump-v3.vcf",
 		"testdata/forrest.gump-v4.vcf",
+		"testdata/apple.vcf",
+		"testdata/alphabet.vcf",
+		"testdata/google.vcf",
 	}
 
 	fn := []string{
@@ -40,7 +43,9 @@ func TestParse(t *testing.T) {
 		"Forrest Gump",
 		"Forrest Gump",
 		"Forrest Gump",
-		"Forrest Gump",
+		"Apple Inc.",
+		"Larry Page",
+		"Google",
 	}
 
 	orgs := [][]string{
@@ -49,7 +54,9 @@ func TestParse(t *testing.T) {
 		[]string{"Bubba Gump Shrimp Co."},
 		[]string{"Bubba Gump Shrimp Co."},
 		[]string{"Bubba Gump Shrimp Co."},
-		[]string{"Bubba Gump Shrimp Co."},
+		[]string{"Apple Inc."},
+		[]string{"Alphabet Inc"},
+		[]string{"Google, Inc"},
 	}
 
 	for i, fname := range testFiles {
