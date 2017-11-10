@@ -28,9 +28,10 @@ import (
 )
 
 const (
-	CRLF = "\r\n"
-	LF   = "\n"
-	CR   = "\r"
+	Version = `v0.0.1`
+	CRLF    = "\r\n"
+	LF      = "\n"
+	CR      = "\r"
 )
 
 // VCard is a struct based on VCard V4.0 example
