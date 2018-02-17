@@ -84,3 +84,7 @@ func TestParse(t *testing.T) {
 		}
 	}
 }
+
+func TestString(t *testing.T) {
+	t.Errorf("vcard.String() not implemented")
+}

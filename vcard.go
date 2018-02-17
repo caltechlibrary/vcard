@@ -115,7 +115,7 @@ func (vcard *VCard) Parse(src []byte) error {
 // String renders a text view of vcard contents (should really render in VCard v4 format...)
 func (vcf *VCard) String() string {
 	//FIXME: this should render text in VCard v4 format...
-	return fmt.Sprintf("%+v", vcf)
+	return "vcard.String() Not implemented"
 }
 
 // AsJSON takes a vcard and returns it as a JSON doc suitable for using with datatools or dataset
