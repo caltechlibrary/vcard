@@ -19,7 +19,7 @@ endif
 
 build: bin/vcard2json$(EXT) 
 
-bin/vcard2json$(EXT): vcard.go
+bin/vcard2json$(EXT): vcard.go cmd/vcard2json/vcard2json.go
 	go build -o bin/vcard2json$(EXT) cmd/vcard2json/vcard2json.go
 
 lint:
@@ -46,6 +46,11 @@ save:
 clean:
 	if [ -d bin ]; then rm -fR bin; fi
 	if [ -d dist ]; then rm -fR dist; fi
+	if [ -d man ]; then rm -fR man; fi
+
+man: build
+	mkdir -p man/man1
+	bin/vcard2json -generate-manpage | nroff -Tutf8 -man > man/man1/vcard2json.1
 
 install:
 	env GOBIN=$(GOPATH)/bin go install cmd/vcard2json/vcard2json.go

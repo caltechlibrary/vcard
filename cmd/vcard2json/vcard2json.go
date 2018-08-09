@@ -32,7 +32,7 @@ var (
 	license = `
 %s %s
 
-Copyright (c) 2017, Caltech
+Copyright (c) 2018, Caltech
 All rights not granted herein are expressly reserved by Caltech.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,19 +45,26 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 `
-	description = `
-%s converts a VCard to JSON. The vcard can be read from stdin or form a file
-with the usual options. The JSON version will be written to stdout.
+
+	synopsis = `_vcard2json_ convers a vcard file to a JSON ouput`
+
+	description = `_vcard2json_ converts a VCard to JSON. The 
+vcard can be read from stdin or form a file with the usual options. 
+The JSON version will be written to stdout.
 `
 
 	examples = `
 Simple usage of building a CSV file one rows at a time.
 
-    cat my.cvf | %s > myVCard.json
+` + "```" + `
+    cat my.cvf | vcard2json > myVCard.json
+` + "```" + `
 
 Or reading, writing to specific file
 
-    %s -i mv.cvf -o myVCard.json
+` + "```" + `
+    vcard2json -i mv.cvf -o myVCard.json
+` + "```" + `
 `
 
 	// Standard Options
@@ -68,6 +75,7 @@ Or reading, writing to specific file
 	inputFName       string
 	outputFName      string
 	generateMarkdown bool
+	generateManPage bool
 	quiet            bool
 	newLine          bool
 	eol              string
@@ -81,8 +89,8 @@ func main() {
 
 	// Add Help Docs
 	app.AddHelp("license", []byte(fmt.Sprintf(license, appName, vcard.Version)))
-	app.AddHelp("description", []byte(fmt.Sprintf(description, appName)))
-	app.AddHelp("examples", []byte(fmt.Sprintf(examples, appName, appName)))
+	app.AddHelp("description", []byte(description))
+	app.AddHelp("examples", []byte(examples))
 
 	// Document non-option parameters
 
@@ -95,6 +103,7 @@ func main() {
 	app.StringVar(&outputFName, "o,output", "", "output filename")
 	app.BoolVar(&quiet, "quiet", false, "suppress error messages")
 	app.BoolVar(&generateMarkdown, "generate-markdown", false, "generate markdown documentation")
+	app.BoolVar(&generateManPage, "generate-manpage", false, "generate man page")
 	app.BoolVar(&newLine, "nl,newline", false, "if true add a trailing newline")
 
 	// Application specific options
@@ -118,6 +127,10 @@ func main() {
 	// Process options
 	if generateMarkdown {
 		app.GenerateMarkdown(app.Out)
+		os.Exit(0)
+	}
+	if generateManPage {
+		app.GenerateManPage(app.Out)
 		os.Exit(0)
 	}
 	if showHelp || showExamples {
